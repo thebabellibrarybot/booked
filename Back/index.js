@@ -31,16 +31,18 @@ app.use((req, res, next) => {
     next()
 });
 
-// passport
-app.use(passport.initialize());
-app.use(passport.session());
 
-// session
+// session midleware
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }))
+
+// passport midleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 // dev
