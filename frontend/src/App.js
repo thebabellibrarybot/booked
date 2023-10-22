@@ -1,9 +1,10 @@
-import './App.css';
+import './scss/_main.scss';
 import { Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import Login from './pages/login';
 import BookingForm from './pages/bookingForm';
+import GuestNames from './components/guestNames';
 
 import AdminProvider from './provider/adminProvider';
 
@@ -15,15 +16,18 @@ function App() {
 
         <div className = {`theme`}>
             <div className='app'>
+
               <div className='content'>
                 <Routes>
                   {/* open routes */}
+                  <Route path = '/prac' element = {<GuestNames/>}></Route>
                   <Route path = '/bookingform/:id' element = {<BookingForm/>}/>
                   <Route path = '/' element = {<Login/>}/>
                   {/* closed routes */}
                   
                 </Routes>
-              </div>   
+              </div>  
+
             </div>
         </div>
       </AdminProvider>
