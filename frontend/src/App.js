@@ -4,11 +4,16 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import Login from './pages/login';
 import BookingForm from './pages/bookingForm';
-import GuestNames from './components/guestNames';
+import Landing from './pages/landing';
+// cur prac
+import RadioButtons from './components/radioButtons';
 
 import AdminProvider from './provider/adminProvider';
 
 function App() {
+
+  const arr = ['sm', 'med', 'l'];
+
   return (
 
     <GoogleOAuthProvider clientId='29200798300-tmajo4t5hqrgk71bsshmsvtdf3k07u2v.apps.googleusercontent.com'>
@@ -20,10 +25,14 @@ function App() {
               <div className='content'>
                 <Routes>
                   {/* open routes */}
-                  <Route path = '/prac' element = {<GuestNames/>}></Route>
+                  <Route path = '/prac' element = {<RadioButtons arr = {arr} header = 'header'/>}></Route>
                   <Route path = '/bookingform/:id' element = {<BookingForm/>}/>
-                  <Route path = '/' element = {<Login/>}/>
+                  <Route path = '/' element = {<Landing/>}/>
                   {/* closed routes */}
+                  {/* <Route path = '/dashboard' element = {<Dashboard/>}/> */}
+                  {/* <Route path = '/dashboard/createbookingform/:id' element = {<crudBookingForm/>}/> */}
+
+
                   
                 </Routes>
               </div>  

@@ -1,17 +1,30 @@
+@import "./colors";
+
+* {
+    margin: 0;
+}
+
 .app {
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    border: 2px solid red;
+  background-color: $blue-background;
+}
+.app {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+p, h1 {
+    margin: 0;
   }
-  
+
   .content {
     width: 100%;
+    margin: 0;
+    padding: 0;
     justify-content: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin: 5%;
-    text-align: center;  border: 2px solid black;
+    text-align: center;
+    border: 2px solid black;
+    z-index: 3;
   }

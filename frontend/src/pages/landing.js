@@ -38,9 +38,8 @@ const App = () => {
   };
 
   return (
-    <div className='content'>
+    <div>
       <h1>My React App</h1>
-      <p>Login or Sign Up:</p>
       <GoogleLogin
         clientId="29200798300-tmajo4t5hqrgk71bsshmsvtdf3k07u2v.apps.googleusercontent.com"
         onSuccess={onSuccess}

@@ -7,12 +7,13 @@ const adminSchema = new Schema (
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    transactionHistory: { type: Object, required: false },
     token: { type: String, required: false },
     theme: { type: String, required: false },
+    adminId: { type: String, required: false },
+    transactionId: { type: String, required: false },
     }
 );
 
-const AdminModel = mongoose.model('userdata', adminSchema);
+const AdminModel = mongoose.model('admindata', adminSchema);
 
 module.exports = AdminModel;

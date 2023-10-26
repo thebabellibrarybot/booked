@@ -12,8 +12,10 @@ const passport = require('passport');
 require('./src/config/passportConfig')(passport);
 const session = require('express-session');
 
-
 // app routes
+// user routes
+const bookingFormInfoRoutes = require('./src/routes/bookingFormInfoRoutes');
+// auth routes
 const adminRoutes = require('./src/routes/adminRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 
@@ -44,7 +46,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
 // dev
 // mongoDB conn
 const uri = process.env.MONGO_URI 
@@ -60,6 +61,7 @@ app.use('/admin', adminRoutes);
 app.use('/auth', authRoutes);
 
 // routes user \\
+app.use('/bookingFormInfo', bookingFormInfoRoutes);
 
 // serve static assests for production
 /*
