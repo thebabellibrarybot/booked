@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const corsOptions = require('./src/config/corsOptions');
 const credentials = require('./src/middleware/credentials');
 const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo');
 const passport = require('passport');
 require('./src/config/passportConfig')(passport);
 const session = require('express-session');
@@ -16,7 +17,6 @@ const session = require('express-session');
 // user routes
 const bookingFormInfoRoutes = require('./src/routes/bookingFormInfoRoutes');
 // auth routes
-const adminRoutes = require('./src/routes/adminRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 
 // basic app env 
@@ -33,19 +33,6 @@ app.use((req, res, next) => {
     next()
 });
 
-
-// session midleware
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
-}))
-
-// passport midleware
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 // dev
 // mongoDB conn
 const uri = process.env.MONGO_URI 
@@ -56,8 +43,22 @@ connection.once('open', () => {
     console.log('md conn')
 })
 
+
+// session midleware
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongoUrl: mongoose.connection })
+}))
+
+// passport midleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 // routes admin \\
-app.use('/admin', adminRoutes);
 app.use('/auth', authRoutes);
 
 // routes user \\
